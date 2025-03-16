@@ -1,0 +1,22 @@
+[tool.poetry]
+package-mode = false
+
+[project]
+name = "the-alchemist"
+version = "0.1.0"
+description = "Simple alchemy engine for games and stuff"
+authors = [
+    {name = "angon1",email = "kubabak@gmail.com"}
+]
+license = {text = "python -m pip install --upgrade pip"}
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "ruff (>=0.11.0,<0.12.0)",
+    "pytest (>=8.3.5,<9.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
