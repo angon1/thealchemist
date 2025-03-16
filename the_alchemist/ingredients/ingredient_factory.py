@@ -1,7 +1,4 @@
-from ingredients.herb import Herb
-
-INGREDIENT_CATEGORIES = {"herb": Herb}
-
+from ingredients.mappings import INGREDIENT_CATEGORIES
 
 class IngredientFactory:
     @staticmethod
