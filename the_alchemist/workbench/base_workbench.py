@@ -2,6 +2,7 @@ from abc import ABC
 from pydantic import BaseModel
 from typing import List
 from tools.base_tool import BaseTool
+from ingredients.base_ingredient import BaseIngredient
 
 class BaseWorkbench(ABC, BaseModel):
     tools: List[str]
@@ -13,7 +14,22 @@ class BaseWorkbench(ABC, BaseModel):
     def remove_tool(self, tool):
         self.tools.remove(tool.name)
 
-    def use_tool(self, tool:BaseTool, ingredients:List[str]):
+    def add_ingredients(self, ingredients:List[BaseIngredient]):
+        for ingredient in ingredients:
+            self.ingredients.append(ingredient.name)
+
+    def remove_ingredients(self, ingredients:List[BaseIngredient]):
+        for ingredient in ingredients:
+            self.ingredients.remove(ingredient.name)
+
+    def get_final_product(self):
+        if len(self.ingredients) == 1:
+            return self.ingredients[0]
+        else:
+            raise ValueError("Workbench contains more than one ingredient. Cannot determine final product.")
+
+
+    def use_tool(self, tool:BaseTool, ingredients:List[BaseIngredient]):
         for ingredient in ingredients:
             if ingredient.name not in self.ingredients:
                 raise ValueError(f"Ingredient {ingredient} not found in workbench.")

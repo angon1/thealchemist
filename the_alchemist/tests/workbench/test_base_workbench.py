@@ -45,3 +45,33 @@ def test_use_tool_missing_tool(workbench):
     workbench.ingredients.append("wood")
     with pytest.raises(ValueError, match="Tool hammer not found in workbench."):
         workbench.use_tool(tool, [ingredient])
+
+def test_workbench_initialization():
+    from workbench.workbench import Workbench
+    workbench = Workbench(tools=[], ingredients=[])
+    assert workbench.tools == []
+    assert workbench.ingredients == []
+
+def test_add_ingredients(workbench):
+    ingredient = MockIngredient(name="wood")
+    workbench.add_ingredients([ingredient])
+    assert "wood" in workbench.ingredients
+
+def test_remove_ingredients(workbench):
+    ingredient = MockIngredient(name="wood")
+    workbench.add_ingredients([ingredient])
+    workbench.remove_ingredients([ingredient])
+    assert "wood" not in workbench.ingredients
+
+def test_get_final_product_single_ingredient(workbench):
+    ingredient = MockIngredient(name="wood")
+    workbench.add_ingredients([ingredient])
+    product = workbench.get_final_product()
+    assert product == "wood"
+
+def test_get_final_product_multiple_ingredients(workbench):
+    ingredient1 = MockIngredient(name="wood")
+    ingredient2 = MockIngredient(name="stone")
+    workbench.add_ingredients([ingredient1, ingredient2])
+    with pytest.raises(ValueError, match="Workbench contains more than one ingredient. Cannot determine final product."):
+        workbench.get_final_product()
