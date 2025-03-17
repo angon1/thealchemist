@@ -1,10 +1,10 @@
-from ingredients.mappings import INGREDIENT_CATEGORIES
+from ingredients.ingredient import Ingredient
+
 
 class IngredientFactory:
     @staticmethod
-    def produce_ingredient(data: dict):
-        ingredient_class = INGREDIENT_CATEGORIES.get(data.pop("category"))
-        if ingredient_class:
-            return ingredient_class(**data)
-        else:
-            raise ValueError("Invalid ingredient type")
+    def create(data: dict):
+        try:
+            return Ingredient(**data)
+        except Exception as e:
+            raise Exception(f"Failed to create ingredient: {e}")
