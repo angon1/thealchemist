@@ -1,7 +1,6 @@
 import pytest
 from pydantic import BaseModel
 from typing import List
-from workbench.base_workbench import BaseWorkbench
 from tools.simple_tool import BaseTool
 
 class MockTool(BaseTool):
