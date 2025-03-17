@@ -1,5 +1,5 @@
 from ingredients.base_ingredient import BaseIngredient
 
 
-class Herb(BaseIngredient):
+class Ingredient(BaseIngredient):
     pass

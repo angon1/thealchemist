@@ -12,6 +12,6 @@ herb_data = {
 if __name__ == "__main__":
     pprint("Welcome int the alchemy world")
     factory = IngredientFactory()
-    my_new_herb = factory.produce_ingredient(herb_data)
+    my_new_herb = factory.create(herb_data)
     pprint(f"Created a new herb: {my_new_herb}")
     pprint(f"Features: {my_new_herb.get_features()}")

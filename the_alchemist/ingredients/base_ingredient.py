@@ -4,10 +4,11 @@ from typing import Dict
 
 
 class BaseIngredient(ABC, BaseModel):
+    category: str
     name: str
     desctiption: str = None
     # features : dict = {"feature": _strength_}
-    features: Dict[str,int] = {"NoFeature": 0}
+    features: Dict[str, int] = {"NoFeature": 0}
 
     def get_features(self):
         return self.features

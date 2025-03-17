@@ -1,1 +1,1 @@
-from ingredients.herb import Herb
+from ingredients.ingredient import Ingredient
