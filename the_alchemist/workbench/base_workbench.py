@@ -2,7 +2,7 @@ from abc import ABC
 from pydantic import BaseModel
 from typing import List
 from tools.base_tool import BaseTool
-from ingredients.base_ingredient import BaseIngredient
+from ingredients.models.base_ingredient import BaseIngredient
 
 class BaseWorkbench(ABC, BaseModel):
     """
@@ -35,6 +35,8 @@ class BaseWorkbench(ABC, BaseModel):
     """
     tools: List[str]
     ingredients: List[str]
+    recipes: List[dict] = []
+    product: str = None
 
     def add_tool(self, tool):
         self.tools.append(tool.name)
@@ -68,4 +70,3 @@ class BaseWorkbench(ABC, BaseModel):
             return product
         else:
             raise ValueError(f"Tool {tool.name} not found in workbench.")
-
