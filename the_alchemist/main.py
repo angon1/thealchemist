@@ -1,5 +1,5 @@
 from rich.pretty import pprint
-from ingredients.ingredient_factory import IngredientFactory
+from ingredients.factory.ingredient_factory import IngredientFactory
 
 
 herb_data = {

@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from pydantic import BaseModel
-from ingredients.base_ingredient import BaseIngredient
+from ingredients.models.base_ingredient import BaseIngredient
 from typing import List
 
 
