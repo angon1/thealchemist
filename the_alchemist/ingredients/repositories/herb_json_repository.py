@@ -1,6 +1,6 @@
 from ..models.herb import Herb
 from .json_repository import JsonRepository
-from settings import settings
+from the_alchemist.settings import settings
 from pathlib import Path
 class HerbJsonRepository(JsonRepository):
     model = Herb
