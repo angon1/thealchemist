@@ -1,4 +1,4 @@
-from ingredients.models.base_ingredient import BaseIngredient
+from .base_ingredient import BaseIngredient
 
 
 class Ingredient(BaseIngredient):
