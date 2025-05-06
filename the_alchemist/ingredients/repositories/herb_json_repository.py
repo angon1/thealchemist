@@ -7,7 +7,7 @@ class HerbJsonRepository(JsonRepository):
 
     def __init__(self, file_path: str = None):
         if file_path is None:
-            final_path = Path(settings.DEFAULT_JSON_DB_PATH).resolve()
+            final_path = Path(settings.DEFAULT_JSON_INGREDIENT_DB_PATH).resolve()
         else:
             final_path = Path(file_path).resolve()
         
