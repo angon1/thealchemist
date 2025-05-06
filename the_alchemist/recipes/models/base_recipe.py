@@ -10,26 +10,14 @@ class BaseRecipe(ABC, BaseModel):
         ingredients (List[str]): A list of ingredient names required for the recipe.
         category (str): The category of the recipe.
         product (str): The name of the resulting product.
-        minimum_skills_level (Optional[Dict[str, int]]): Minimum skill levels required for the recipe.
+        preparation_requirements (Optional[Dict[str, str]]): Requirements for preparing the recipe.
         modifiers (Optional[Dict[str, int]]): Modifiers for the recipe.
     """
     ingredients: List[str]
     category: str
     product: str
-    minimum_skills_level: Optional[Dict[str, int]] = None
+    preparation_requirements: Optional[Dict[str, str]] = None
     modifiers: Optional[Dict[str, int]] = None
-
-    @abstractmethod
-    def process(self, ingredients: List[dict]) -> dict:
-        """Process the recipe with the given ingredients.
-
-        Args:
-            ingredients (List[dict]): A list of ingredient data.
-
-        Returns:
-            dict: The resulting product data.
-        """
-        raise NotImplementedError("The method 'process' must be implemented.")
 
     @abstractmethod
     def check_if_can_prepare(self, ingredients: List[dict], skills: Dict[str, int]) -> Dict:
@@ -70,6 +58,10 @@ class BaseRecipe(ABC, BaseModel):
         """
         raise NotImplementedError("The method 'get_product' must be implemented.")
 
+    def can_prepare(self, ingredients: List[dict], skills: Dict[str, int]) -> bool:
+        """Check if the recipe can be prepared."""
+        return self.check_if_can_prepare(ingredients, skills)["success"]
+
     def to_dict(self):
         """Convert the recipe to a dictionary representation.
 
@@ -80,7 +72,7 @@ class BaseRecipe(ABC, BaseModel):
             "ingredients": self.ingredients,
             "category": self.category,
             "product": self.product,
-            "minimum_skills_level": self.minimum_skills_level,
+            "preparation_requirements": self.preparation_requirements,
             "modifiers": self.modifiers,
         }
 
@@ -94,7 +86,7 @@ class BaseRecipe(ABC, BaseModel):
             f"Category: {self.category}\n"
             f"Product: {self.product}\n"
             f"Ingredients: {self.ingredients}\n"
-            f"Minimum Skills Level: {self.minimum_skills_level}\n"
+            f"Preparation Requirements: {self.preparation_requirements}\n"
             f"Modifiers: {self.modifiers}"
         )
 
@@ -108,6 +100,6 @@ class BaseRecipe(ABC, BaseModel):
             f"Category: {self.category} - "
             f"Product: {self.product} - "
             f"Ingredients: {self.ingredients} - "
-            f"Minimum Skills Level: {self.minimum_skills_level} - "
+            f"Preparation Requirements: {self.preparation_requirements} - "
             f"Modifiers: {self.modifiers}"
         )

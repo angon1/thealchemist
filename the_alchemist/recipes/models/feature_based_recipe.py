@@ -11,12 +11,14 @@ class FeatureBasedRecipe(BaseRecipe):
     required_feature: str
     ingredients: List[str] = []  # Override to make it optional
 
-    def check_if_can_prepare(self, ingredients: List[dict], skills: Dict[str, int]) -> Dict:
-        """Check if the recipe can be prepared with the given ingredients and skills."""
-        if self.minimum_skills_level:
-            for skill, level in self.minimum_skills_level.items():
-                if skills.get(skill, 0) < level:
-                    return {"success": False, "reason": f"Skill '{skill}' too low."}
+    def check_if_can_prepare(self, ingredients: List[dict], preparation_requirements: Dict[str, str]) -> Dict:
+        """Check if the recipe can be prepared with the given preparation requirements."""
+        if self.preparation_requirements:
+            for req, value in self.preparation_requirements.items():
+                if req == "skill" and preparation_requirements.get(req, "") < value:
+                    return {"success": False, "reason": f"Requirement '{req}' not met."}
+                if req == "tool" and value not in [tool["name"] for tool in ingredients]:
+                    return {"success": False, "reason": f"Required tool '{value}' not found."}
         return {"success": True}
 
     def apply_modifiers(self, product_data: dict, skills: Dict[str, int]) -> dict:
@@ -54,7 +56,7 @@ class FeatureBasedRecipe(BaseRecipe):
             "required_feature": self.required_feature,
             "category": self.category,
             "product": self.product,
-            "minimum_skills_level": self.minimum_skills_level,
+            "preparation_requirements": self.preparation_requirements,
             "modifiers": self.modifiers,
         }
 
