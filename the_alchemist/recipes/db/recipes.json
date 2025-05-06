@@ -1,0 +1,23 @@
+{
+    "Healing Potion": {
+        "recipe_type": "feature_based",
+        "required_feature": "healing",
+        "category": "potion",
+        "product": "Healing Potion",
+        "minimum_skills_level": {"alchemy": 2},
+        "modifiers": {"healing": 5}
+    },
+    "Relaxation Ointment": {
+        "recipe_type": "specific_ingredients",
+        "ingredients": ["Lavender", "Rosemary"],
+        "category": "ointment",
+        "product": "Relaxation Ointment",
+        "minimum_skills_level": {"alchemy": 3},
+        "modifiers": {"aroma": 2},
+        "product_data": {
+            "category": "ointment",
+            "name": "Relaxation Ointment",
+            "features": {"aroma": 10, "healing": 2}
+        }
+    }
+}
