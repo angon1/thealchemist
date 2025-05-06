@@ -1,12 +1,17 @@
-from ingredients.models.herb import Herb
-from ingredients.repositories.json_repository import JsonRepository
-
-
+from ..models.herb import Herb
+from .json_repository import JsonRepository
+from the_alchemist.settings import settings
+from pathlib import Path
 class HerbJsonRepository(JsonRepository):
     model = Herb
 
-    def __init__(self, file_path: str = "ingredients/db/herbs.json"):
-        super().__init__(file_path)
+    def __init__(self, file_path: str = None):
+        if file_path is None:
+            final_path = Path(settings.DEFAULT_JSON_DB_PATH).resolve()
+        else:
+            final_path = Path(file_path).resolve()
+        
+        super().__init__(final_path)
 
     def get_by_name(self, name: str) -> Herb:
         """

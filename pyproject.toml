@@ -2,27 +2,30 @@
 package-mode = false
 
 [project]
-name = "the-alchemist"
+name = "thealchemist"
 version = "0.1.0"
-description = "Simple alchemy engine for games and stuff"
+description = "Simple alchemy engine for games and applications"
 authors = [
     {name = "angon1",email = "kubabak@gmail.com"}
 ]
-license = {text = "python -m pip install --upgrade pip"}
+license = {text = "BSD-2-Clause"}
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "ruff (>=0.11.0,<0.12.0)",
-    "pytest (>=8.3.5,<9.0.0)",
-    "rich (>=13.9.4,<14.0.0)",
-    "pydantic (>=2.10.6,<3.0.0)",
-    "python-dotenv (>=1.0.1,<2.0.0)",
-    "pytest-mock (>=3.14.0,<4.0.0)",
-    "pytest-cov (>=6.0.0,<7.0.0)",
-    "pydantic-settings (>=2.9.1,<3.0.0)",
-    "black (>=25.1.0,<26.0.0)",
-    "isort (>=6.0.1,<7.0.0)",
+    "rich>=13.9.4,<14.0.0",
+    "pydantic>=2.10.6,<3.0.0",
+    "pydantic-settings>=2.9.1,<3.0.0",
 ]
+
+[project.optional-dependencies]
+testing = [
+    "pytest>=8.3.5,<9.0.0",
+    "pytest-mock>=3.14.0,<4.0.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+# ...existing code...
 
 [tool.pytest.ini_options]
 pythonpath = [
@@ -30,5 +33,5 @@ pythonpath = [
 ]
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"

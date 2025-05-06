@@ -1,4 +1,4 @@
-from ingredients.models.herb import Herb
+from ..models.herb import Herb
 
 registered_ingredients = {"herb": Herb}
 

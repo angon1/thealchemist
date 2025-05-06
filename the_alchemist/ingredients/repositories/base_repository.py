@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from ingredients.models.base_ingredient import BaseIngredient
+from ..models.base_ingredient import BaseIngredient
 
 
 class BaseIngredientRepository(ABC):

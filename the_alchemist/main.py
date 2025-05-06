@@ -2,16 +2,20 @@ from rich.pretty import pprint
 from ingredients.factory.ingredient_factory import IngredientFactory
 
 
-herb_data = {
-    "category": "herb",
-    "name": "Mandrake",
-    "description": "A root that looks like a human",
-    "features": {"healing": 3},
-}
+def main():
+    herb_data = {
+        "category": "herb",
+        "name": "Mandrake",
+        "description": "A root that looks like a human",
+        "features": {"healing": 3},
+    }
 
-if __name__ == "__main__":
-    pprint("Welcome int the alchemy world")
+    pprint("Welcome to the alchemy world")
     factory = IngredientFactory()
     my_new_herb = factory.create(herb_data)
     pprint(f"Created a new herb: {my_new_herb}")
     pprint(f"Features: {my_new_herb.get_features()}")
+
+
+if __name__ == "__main__":
+    main()
